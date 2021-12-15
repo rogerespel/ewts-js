@@ -61,8 +61,8 @@ let ewts = new EwtsConverter({ check_strict: false, leave_dubious: true, sloppy:
 
 # Code and history
 
-The first version of this code was written in Perl around 2008, followed in 2010 by a
-[Java port](https://github.com/buda-base/ewts-converter) at the request of
+The first version of this code was [written in Perl](https://www.lotsawahouse.org/Static/Lingua-BO-Wylie-dev.zip)
+around 2008, followed in 2010 by a [Java port](https://github.com/buda-base/ewts-converter) at the request of
 [TBRC](https://tbrc.org/), now [BDRC](https://www.bdrc.io/).
 
 The Java code was then ported to other languages by different groups: 
