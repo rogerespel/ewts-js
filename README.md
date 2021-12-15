@@ -10,8 +10,6 @@ npm install tibetan-ewts-converter
 
 ```
 
-(Publishing to NPM is still TODO.  Download this repository and install via `npm install package.tgz` for now.)
-
 # Usage
 
 ## From node:
