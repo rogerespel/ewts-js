@@ -1,0 +1,32 @@
+{
+  "name": "tibetan-ewts-converter",
+  "version": "1.0.0",
+  "description": "Convert back and forth between Unicode and EWTS (Wylie-like Tibetan transliteration)",
+  "main": "lib/EwtsConverter.js",
+  "scripts": {
+    "test": "node src/test.mjs",
+    "build-dist": "webpack --mode production",
+    "build-lib": "npx babel src/EwtsConverter.mjs --out-dir lib/",
+    "build": "npm run build-dist && npm run build-lib",
+    "lint": "eslint src/EwtsConverter.mjs"
+  },
+  "keywords": [
+    "tibetan",
+    "wylie",
+    "ewts",
+    "unicode",
+    "transliteration",
+    "converter"
+  ],
+  "author": "roger espel llima",
+  "license": "Apache 2.0",
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "babel-loader": "^8.2.3",
+    "eslint": "^8.3.0",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1"
+  }
+}

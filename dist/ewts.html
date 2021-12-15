@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<!-- 
+	HTML for a simple SPA showcasing EWTS<->Unicode conversion.
+	See ./index.js for the glue javascript code, and EwtsConverter.mjs
+	for the main JS module implementing the conversion.
+
+	Copyright (C) 2010-2021 Roger Espel Llima
+
+	This code is Free Software.  You can redistribute it or modify it, under
+	the terms of the Apache licence version 2.0.
+-->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+.clearfix:before, .clearfix:after { content:""; display:table }
+.clearfix:after { clear:both }
+
+body { background: #fff }
+body, td, input, select, textarea { font-family:Verdana, Tahoma, Helvetica; font-size: 13px; }
+.tib { font-family: "Jomolhari"; font-size: 28px; }
+.warn { font-size: 13px; }
+.eng { font-size: 14px; }
+.after { font-size: 13px; margin-top:5px }
+.title { font-size: 18px; font-weight: bold; }
+textarea#id__txt { margin-top: 5px; margin-bottom: 5px; padding: 5px; border: 1px solid blue; height: 120px; width: 100%; font-size: 14px; }
+.head1 > div { line-height:24px }
+.head1 > div.second { margin-top:5px }
+input, select { border:1px solid #aaa; background:#fff; padding:6px; border-radius:2px; color:#333 }
+input[type="button"]:hover, input[type="button"]:focus { background:#eee }
+
+@media screen and (min-width:900px) {
+	.head1 > div.first { float: left }
+	.head1 > div.second { float: right; margin-top:0 }
+}
+
+	</style>
+	<title>Tibetan transliteration: convert between EWTS (Extended Wylie) and Unicode</title>
+</head>
+
+<body>
+
+<div style="width:95%; max-width:900px; margin:0 auto">
+<form onsubmit="return false">
+<span class="title">Tibetan transliteration: convert between EWTS (Extended Wylie) and Unicode</span><br><br>
+
+<div class="head1 clearfix">
+	<div class="first">
+		Paste your Tibetan text below, and click "Convert" or press Ctrl+Enter.
+	</div>
+	<div class="second">
+		Tibetan Font:
+		<select name="tib_font" id="id__tib_font">
+<option selected value="Jomolhari">Jomolhari</option>
+<option value="Noto Serif Tibetan">Noto Serif Tibetan</option>
+<option value="Tibetan Machine Uni">Tibetan Machine Uni</option>
+<option value="Kailasa">Kailasa</option>
+<option value="Microsoft Himalaya">Microsoft Himalaya</option>
+
+		</select>
+		<select name="tib_size" id="id__tib_size">
+		<option  value="18px">18px</option>
+<option value="20px">20px</option>
+<option value="24px">24px</option>
+<option selected value="28px">28px</option>
+<option value="32px">32px</option>
+<option value="36px">36px</option>
+<option value="40px">40px</option>
+<option value="44px">44px</option>
+<option value="48px">48px</option>
+<option value="52px">52px</option>
+		</select>
+	</div>
+</div>
+
+<textarea id="id__txt" style="font-size: 14px;" name="input">oM aHhU~M` badz+ra gu ru pad+ma sid+d+hi hU~M`:"</textarea><br>
+
+<div class="head1 clearfix">
+	<div class="first">
+		<select id="id__conversion" name="conversion">
+		<option selected value="wy2uni">EWTS to Unicode</option>
+<option  value="uni2wy">Unicode to EWTS</option>
+
+		</select>
+		<input id="id__convert" type="button" name="send" value="Convert!" style="font-weight:bold">
+	</div>
+	<div class="second">
+		Dubious syllables: <label><input type="radio" name="dubious" value="process" checked>Try to process</label>
+		&nbsp; <label><input id="id__leave_dubious" type="radio" name="dubious" value="leave">Leave untranslated</label>
+	</div>
+</div>
+
+</form>
+<br>
+
+<div id="id__tibetan" style="display:none">
+Converted text in Tibetan script:<br>
+<textarea id="id__tib_out" style="border: 1px solid #888; background: #eef; padding: 8px; width: 100%; height: 250px; margin-top:5px" class="tib" onkeypress="return false"></textarea>
+<div class="after">
+If the text does not render properly, you might need to upgrade your browser and/or install a Tibetan font such as <a target="_blank" href="https://fonts.google.com/noto/specimen/Noto+Serif+Tibetan">Noto Serif Tibetan</a> or <a target="_blank" href="https://collab.its.virginia.edu/wiki/tibetan-script/Jomolhari%20ID.html">Jomolhari</a>.
+</div>
+</div>
+
+<div id="id__wylie" style="display:none">
+Converted text in Wylie transliteration:<br>
+<textarea id="id__wylie_out" style="border: 1px solid #888; background: #eef; padding: 8px; width: 100%; height: 250px; margin-top:5px" class="eng" onkeypress="return false"></textarea><br>
+</div>
+
+<br>
+
+<div id="warnings" style="display:none">
+Warnings:
+<div style="border: 1px solid #888; background: #ffa; padding: 8px; width: 100%; box-sizing:border-box; margin-top:5px" class="warn" id="warnings-inner">
+</div>
+</div>
+
+<div class="after" style="margin-top:32px; line-height:1.5">
+
+&bull; If this page does not work, <a href="https://www.lotsawahouse.org/Cgi/wylie.pl">please try the old version here</a>.
+
+<br>&bull; This conversion code is Free Software.  <a href="https://github.com/rogerespel/ewts-js">Get the javascript source code</a>.
+
+<br>&bull; See <a href="https://www.lotsawahouse.org/Static/Lingua-BO-Wylie-dev.zip">here for the original Perl version of this code</a>;
+see <a target="_blank" href="https://github.com/buda-base/ewts-converter">here for a Java port</a> maintained by the BUDA project,
+and <a target="_blank" href="https://github.com/Esukhia/pyewts">here for a Python port</a> by Esukhia.
+
+<br>&bull; <span id="run-tests" style="cursor:pointer">Run tests!</span>
+
+<br>&bull; See the definition of <a target="_blank" href="http://www.thlib.org/reference/transliteration/#essay=/thl/ewts/ ">THL Extended Wylie Transliteration Schema</a>
+
+</div>
+<br><br>
+</div>
+
+<script src="./ewts.js"></script>
+
+</body>
+</html>
