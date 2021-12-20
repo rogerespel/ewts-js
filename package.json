@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "Convert back and forth between Unicode and EWTS (Wylie-like Tibetan transliteration)",
   "main": "lib/EwtsConverter.js",
+  "module": "src/EwtsConverter.mjs",
   "scripts": {
     "test": "node src/test.mjs",
     "build-dist": "webpack --mode production",
