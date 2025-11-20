@@ -1,7 +1,11 @@
-# EWTS Converter
+# Tibetan Phonetics and Transliteration
 
-This JavaScript module implements the conversion between Unicode Tibetan text and
-[Extended Wylie transliteration (EWTS)](http://www.thlib.org/reference/transliteration/#essay=/thl/ewts/).
+This JavaScript package implements two things:
+
+- conversion between Unicode Tibetan text and
+[Extended Wylie transliteration (EWTS)](http://old.thlib.org/reference/transliteration/#essay=/thl/ewts/)
+
+- approximate Tibetan phonetics according to THL and other systems.
 
 # Installation
 
@@ -10,39 +14,28 @@ npm install tibetan-ewts-converter
 
 ```
 
+As of version 2, this is a pure ES module.
+
 # Usage
 
-## From node:
+## Wylie/EWTS conversion:
 
 ```javascript
-let { EwtsConverter } = require('tibetan-ewts-converter')
-let ewts = new EwtsConverter()
+import { EwtsConverter } from 'tibetan-ewts-converter/EwtsConverter';
+const ewts = new EwtsConverter()
 console.log(ewts.to_unicode("sangs rgyas"))
 console.log(ewts.to_ewts("སངས་རྒྱས"))
-
-// retrieve warnings from the last conversion, as an array of strings
-let warns = ewts.get_warnings();
-if (warns.length > 0) console.log(warns.join("\n"));
 ```
 
-Output:
-
-```
-'སངས་རྒྱས'
-'sangs rgyas'
-```
-
-## ES6 module
-
-Use the ES6 module directly and transpile/pack as needed:
+## Approximate phonetics:
 
 ```javascript
-import { EwtsConverter } from 'src/EwtsConverter.mjs';
-let ewts = new EwtsConverter();
-
+import { get_phonetics } from "tibetan-ewts-converter/TibetanPhonetics-Any";
+const pho = get_phonetics({ style: 'thl' });
+console.log(pho.phonetics("sangs rgyas", { autosplit: true }));
 ```
 
-# Options
+# EwtsConverter options
 
 The constructor accepts an optional object with named options:
 
@@ -57,42 +50,38 @@ The constructor accepts an optional object with named options:
 let ewts = new EwtsConverter({ check_strict: false, leave_dubious: true, sloppy: true });
 ```
 
+# TibetanPhonetics options
+
+`get_phonetics` accepts an optional object with named options:
+
+- `style`: one of 'thl', 'lotsawahouse', 'rigpa', 'lhasey', 'padmakara'
+- `lang`: 2-letter language code, for styles that have language variants (ex. 'en', 'es')
+
+See the code for lots of other options allowing fine control of phonetics generation.
+
+The `phonetics` method takes a string (Tibetan Unicode or EWTS), and an optional `options` object.
+
+Unless you're using a better external tokenizer, always pass the option `{ autosplit: true }`.
+
 # Code and history
 
 The first version of this code was [written in Perl](https://www.lotsawahouse.org/Static/Lingua-BO-Wylie-dev.zip)
-around 2008, followed in 2010 by a [Java port](https://github.com/buda-base/ewts-converter) at the request of
+around 2008.  In 2010 the EWTS/Unicode converter was [ported to Java](https://github.com/buda-base/ewts-converter) at the request of
 [TBRC](https://tbrc.org/), now [BDRC](https://www.bdrc.io/).
 
-The Java code was then ported to other languages by different groups: 
+This Java code was then ported to other languages by different groups: 
 - [Python port by Esukhia](https://github.com/OpenPecha-dev/pyewts)
 - [C# port by radiantspace](https://github.com/radiantspace/WylieCS)
 - [Another Python port by radiantspace](https://github.com/radiantspace/WyliePy)
 - JavaScript ports from [BDRC](https://github.com/buda-base/jsewts), [Ksana Forge](https://github.com/ksanaforge/wylie)
 and [Karmapa Digital Toolbox](https://github.com/karmapa/wylie)
 
-This is a new JavaScript port going back to the original Perl code, but incorporating some of the improvements
-done by various groups.  It is written in modern and idiomatic JavaScript as of 2021.
+This JavaScript port was done in 2021, going back to the original Perl code, but incorporating some of the improvements
+done by various groups.
 
-# Files
+Phonetics generation was added to this project in 2025, also ported from the original perl with the help of AI.
 
-## Main conversion library
+# License
 
-The raw code that implements the conversion between EWTS and Unicode is contained 
-in the file `src/EwtsConverter.mjs`, implemented as a pure ES6 module.
-
-## Transpiled library
-
-The same library, transpiled by Babel for wider compatibility, is contained
-in the file `lib/EwtsConverter.js`.
-
-Should be compatible with all recent browsers as well as Node.
-
-## Sample SPA
-
-The files `src/index.js` and `src/ewts.html` implement a tiny, self-contained
-single page app for online conversion bewteen EWTS and Unicode.
-
-This is packed by Webpack into the `dist` folder, ready to publish.
-
-The online converter can be found on [LotsawaHouse](https://www.lotsawahouse.org/Static/tools/ewts.html).
+Apache 2.0.
 

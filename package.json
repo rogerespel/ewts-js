@@ -1,37 +1,24 @@
 {
   "name": "tibetan-ewts-converter",
-  "version": "1.0.1",
-  "description": "Convert back and forth between Unicode and EWTS (Wylie-like Tibetan transliteration)",
-  "main": "lib/EwtsConverter.js",
-  "module": "src/EwtsConverter.mjs",
-  "scripts": {
-    "test": "node src/test.mjs",
-    "build-dist": "webpack --mode production",
-    "build-lib": "npx babel src/EwtsConverter.mjs --out-dir lib/",
-    "build": "npm run build-dist && npm run build-lib",
-    "lint": "eslint src/EwtsConverter.mjs"
-  },
-  "keywords": [
-    "tibetan",
-    "wylie",
-    "ewts",
-    "unicode",
-    "transliteration",
-    "converter"
-  ],
+  "version": "2.0.0",
+  "type": "module",
+
+  "description": "Tibetan transliteration (Wylie, EWTS) and approximate phonetics",
+  "keywords": [ "tibetan", "wylie", "ewts", "unicode", "transliteration", "converter", "phonetics" ],
+  "author": "roger espel llima",
+  "license": "Apache 2.0",
+
   "repository": {
     "type": "git",
     "url": "https://github.com/rogerespel/ewts-js"
   },
-  "author": "roger espel llima",
-  "license": "Apache 2.0",
-  "devDependencies": {
-    "@babel/cli": "^7.16.0",
-    "@babel/core": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
-    "babel-loader": "^8.2.3",
-    "eslint": "^8.5.0",
-    "webpack": "^5.65.0",
-    "webpack-cli": "^4.9.1"
+
+  "exports": {
+    "./EwtsConverter": "./src/EwtsConverter.mjs",
+    "./TibetanPhonetics": "./src/TibetanPhonetics.mjs",
+    "./TibetanPhonetics-Any": "./src/TibetanPhonetics-Any.mjs",
+    "./TibetanPhonetics-Lhasey": "./src/TibetanPhonetics-Lhasey.mjs",
+    "./TibetanPhonetics-Padmakara": "./src/TibetanPhonetics-Padmakara.mjs",
+    "./TibetanPhonetics-Rigpa": "./src/TibetanPhonetics-Rigpa.mjs"
   }
 }
