@@ -140,9 +140,14 @@ class TibetanPhonetics {
 	this._exceptions ||= word_data.exceptions;
     }
 
-    // Retrieve the list of warnings generated from the previous phonetics call.
+    // Retrieve the list of warnings generated from the previous phonetics call(s); note that warnings accumulate until cleared
     get_warnings() {
         return this._warns || [];
+    }
+
+    // Clear warnings
+    clear_warnings() {
+        this._warns = [];
     }
 
     // Creates Tibetan phonetics from (string, { options })
