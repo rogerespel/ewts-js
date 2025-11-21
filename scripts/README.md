@@ -2,5 +2,5 @@ The script `make-words-exceptions.mjs` converts the source `*.txt` files contain
 
 It only needs to be run after making changes to the word or exception lists.
 
-Run it with: `node ./make-words-exceptions.mjs`
+Run it with: `node ./make-words-exceptions.mjs`.  It updates all the JSON files under `src`.
 
