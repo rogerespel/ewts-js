@@ -22,9 +22,9 @@ As of version 2, this is a pure ES module.
 
 ```javascript
 import { EwtsConverter } from 'tibetan-ewts-converter/EwtsConverter';
-const ewts = new EwtsConverter()
-console.log(ewts.to_unicode("sangs rgyas"))
-console.log(ewts.to_ewts("སངས་རྒྱས"))
+const ewts = new EwtsConverter();
+console.log(ewts.to_unicode("sangs rgyas"));
+console.log(ewts.to_ewts("སངས་རྒྱས"));
 ```
 
 ## Approximate phonetics:
