@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<!-- 
+	Tibetan Phonetics generator.  Simple html front-end for JS TibetanPhonetics-Any.
+
+	Copyright (C) 2010-2025 Roger Espel Llima
+
+	This code is Free Software.  You can redistribute it or modify it, under
+	the terms of the Apache licence version 2.0.
+-->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" sizes="150x150" href="/Static/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="150x150" href="/Static/apple-touch-icon.png">
+
+	<style>
+.clearfix:before, .clearfix:after { content:""; display:table }
+.clearfix:after { clear:both }
+
+body { background: #fff }
+body, td, input, select, textarea { font-family:verdana, tahoma, helvetica; font-size: 13px; }
+.tib { font-family: "Tibetan Machine Uni"; font-size: 28px; }
+.warn { font-family: tahoma; font-size: 12px; }
+.eng { font-family: tahoma; font-size: 14px; }
+.after { font-size: 13px; margin-top:5px }
+.title { font-size: 18px; font-weight: bold; }
+textarea#id__txt { margin-top: 5px; margin-bottom: 5px; padding: 5px; border: 1px solid blue; height: 120px; width: 100%; font-family: fixed; font-size: 14px; }
+input, select { border:1px solid #aaa; background:#fff; padding:6px; border-radius:2px; color:#333 }
+
+.head2 > div { line-height:24px; margin-top:5px }
+.head2 > .one > .left { white-space:nowrap; display:inline-block; min-width:140px; padding:0 8px; box-sizing:border-box; text-align:right }
+.head2 > .one > .right { white-space:nowrap; display:inline-block }
+
+@media screen and (max-width:600px) {
+	.head2 > .one > .left { display:block; text-align:left }
+	.head2 > .one > .right { display:block }
+	.head2 > .one.chk > .left { display:inline-block; min-width:auto }
+	.head2 > .one.chk > .right { display:inline-block }
+	.head2 > .one.submit > .left { display:none }
+	.head2 > .one.submit > .right { text-align:center }
+}
+
+	</style>
+	<title>Tibetan Phonetics Generator</title>
+</head>
+
+<body>
+<div style="width:95%; max-width:900px; margin:0 auto">
+<span class="title">Tibetan Phonetics Generator</span><br><br>
+
+<div>Paste your Tibetan text below in Unicode or Wylie, and click "Make Phonetics" or press Ctrl+Enter.</div>
+
+<textarea id="id__txt" style="font-size: 14px;" name="input"></textarea><br>
+
+<div class="head2">
+	<div class="one">
+		<div class="left">Phonemic system:</div>
+		<div class="right">
+			<select id="id__type" name="type">
+<option value="lotsawahouse-en">LotsawaHouse Phonetics - ENGLISH</option>
+<option value="lotsawahouse-fr">LotsawaHouse Phonetics - FRENCH</option>
+<option value="lotsawahouse-es">LotsawaHouse Phonetics - SPANISH</option>
+<option value="lotsawahouse-de">LotsawaHouse Phonetics - GERMAN</option>
+<option value="rigpa-en">Rigpa Phonetics - ENGLISH</option>
+<option value="rigpa-fr">Rigpa Phonetics - FRENCH</option>
+<option value="rigpa-es">Rigpa Phonetics - SPANISH</option>
+<option value="rigpa-de">Rigpa Phonetics - GERMAN</option>
+<option value="padmakara-en">Padmakara EN - Int. Simplified Phonetics</option>
+<option value="padmakara-pt">Padmakara PT - Int. Simplified Phonetics</option>
+<option value="lhasey-en">Samye Translations</option>
+<option value="thl">THL Simplified Phonemic Transcription</option>
+</select>
+		</div>
+	</div>
+	<div class="one chk" style="margin-top:4px">
+		<div class="left"></div>
+		<div class="right">
+		      	<input id="id-add" type="checkbox" name="addInput" value="y">
+			<label for="id-add">Add input to output</label>
+		</div>
+	</div>
+
+	<div class="one submit" style="margin:16px 0">
+		<div class="left"></div>
+		<div class="right">
+		<input id="id__process" type="button" value="Make Phonetics" style="font-weight:bold; min-width:200px; background:#eee">
+		</div>
+	</div>
+</div>
+
+<div style="color:#c00; margin-top:15px">Please note that automatically generated phonetics cannot possibly be 100% accurate, because the way words are separated in Tibetan is inherently ambiguous. It is important that someone who understands the Tibetan text checks the phonetics.</div>
+
+<div id="id__outbox" style="display:none; margin:32px 0">
+Tibetan Phonetics:<br>
+<textarea id="id__out" style="border: 1px solid #888; background: #eef; padding: 8px; width: 100%; height: 250px; box-sizing:border-box; margin-top:5px" class="eng"></textarea><br>
+</div>
+
+<div id="id__warnbox" style="display:none; margin:32px 0">
+Warnings:
+<div id="id__warns" style="border: 1px solid #888; background: #ffa; padding: 8px; width: 100%; box-sizing:border-box; margin-top:5px" class="warn">
+</div>
+</div>
+
+
+<div class="after" style="margin-top:48px; line-height:1.5">
+&bull; If this page does not work, <a href="https://www.lotsawahouse.org/Cgi/phonetics.pl">please try the old version here</a>.
+
+<br>&bull; This conversion code is Free Software.  <a href="https://github.com/rogerespel/ewts-js">Get the javascript source code</a>.
+
+<br>&bull; See <a href="https://www.lotsawahouse.org/Static/Lingua-BO-Wylie-dev.zip">here for the older Perl version of this code</a>;
+
+<br>&bull; See the definition of <a target="_blank" href="http://old.thlib.org/reference/transliteration/#essay=/thl/phonetics/">THL Simplified Tibetan Phonemic Transcription</a>
+
+</div>
+
+<br><br>
+
+<script type="module" src="./phonetics.js"></script>
+
+</div>
+</body>
+</html>

@@ -8,27 +8,16 @@
   https://github.com/buda-base/ewts-converter
 
   The Extended Wylie Transliteration System is documented at:
-  http://www.thlib.org/reference/transliteration/#essay=/thl/ewts/
-
-  This is a JS module written in modern JavaScript as of 2021.
-
-  For wider compatibility, a version of this code processed by Babel is included
-  in the 'lib' directory.  The most modern feature that is still required by 
-  the Babel version is String.prototype.replaceAll, which Safari only implemented
-  in version 13.1 in early 2020.
-
-  A sample single-page-app featuring this code is implemented by the files ewts.html
-  and index.js, which is processed by Babel and Webpack into the 'dist' directory.
+  http://old.thlib.org/reference/transliteration/#essay=/thl/ewts/
 
   See the README.md file for further details.
 
-  Copyright (C) 2010-2021 Roger Espel Llima
+  Copyright (C) 2010-2025 Roger Espel Llima
 
   This library is Free Software.  You can redistribute it or modify it, under
   the terms of the Apache licence version 2.0.
 
-  Please contact the author if you wish to use it under some terms not covered
-  here.
+  Please contact the author if you wish to use it under some terms not covered here.
 */
 
 
@@ -479,20 +468,6 @@ class EwtsConverter {
 		this.initialized = true;
 
 		let quotemeta = str => (str + '').replace(/\W/g, '\\$&');
-
-		// polyfill String.prototype.replaceAll if needed - not an industrial grade polyfill but close enough
-		// modified from https://vanillajstoolkit.com/polyfills/stringreplaceall/
-		if (!String.prototype.replaceAll) {
-			String.prototype.replaceAll = function(str, repl) {
-
-				// pass regexes to regular .replace()
-				if (Object.prototype.toString.call(str).toLowerCase() === '[object regexp]') {
-					return this.replace(str, repl)
-				}
-
-				return this.replace(new RegExp(quotemeta(str), 'g'), repl);
-			}
-		}
 
 		// precompute the regexp to split a string into Wylie tokens.  sort by decreasing size
 		// so that things like "sh" don't get split into ("s", "h").  the "." and the 's' flag
