@@ -108,7 +108,14 @@ class TibetanPhoneticsRigpa extends TibetanPhonetics {
 
         // load the list of exceptions and words, if not loaded already (should not happen, they get loaded at module init)
         if (lh) make_lh_exceptions();
-        if (lh && combined_opts.pronounce_consonant) delete combined_opts.pronounce_consonant.zh;
+
+	// - make sure not to alter the lang_opts object!!  otherwise creating a 'rigpa' engine after a 'lotsawahouse' engine would still produce 'zh'
+        if (lh && combined_opts.pronounce_consonant) {
+	    combined_opts.pronounce_consonant = {
+		...combined_opts.pronounce_consonant,
+		zh: 'zh',
+	    };
+	}
 
         combined_opts._exceptions = exceptions[key] || exceptions["en" + lh] || {};
         combined_opts._words = words;
