@@ -1246,14 +1246,15 @@ class EwtsConverter {
 		let out = "", line = 1, units = 0;
 		this.warnings = [];
 
-		// globally search and replace some deprecated pre-composed Sanskrit vowels
+		// globally search and replace some deprecated pre-composed Sanskrit vowels, and a pre-composed oM
 		str = str.replaceAll("\u0f76", "\u0fb2\u0f80")
 			.replaceAll("\u0f77", "\u0fb2\u0f71\u0f80")
 			.replaceAll("\u0f78", "\u0fb3\u0f80")
 			.replaceAll("\u0f79", "\u0fb3\u0f71\u0f80")
 			.replaceAll("\u0f81", "\u0f71\u0f80")
 			.replaceAll("\u0f75", "\u0f71\u0f74")
-			.replaceAll("\u0f73", "\u0f71\u0f72");
+			.replaceAll("\u0f73", "\u0f71\u0f72")
+			.replaceAll("\u0f00", "\u0f68\u0f7c\u0f7e");
 		
 		let i = 0, len = str.length;
 

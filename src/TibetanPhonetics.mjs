@@ -477,12 +477,13 @@ class TibetanPhonetics {
 
     // Cleans up tibetan unicode, replacing precombined characters with their combinations.
     _cleanup_unicode(str) {
-        // globally search and replace some deprecated pre-composed Sanskrit vowels
+        // globally search and replace some deprecated pre-composed Sanskrit vowels, as well as pre-composed oM
         return str.replace(/\u0f76/g, "\u0fb2\u0f80")
 	    .replace(/\u0f77/g, "\u0fb2\u0f71\u0f80")
 	    .replace(/\u0f78/g, "\u0fb3\u0f80")
 	    .replace(/\u0f79/g, "\u0fb3\u0f71\u0f80")
 	    .replace(/\u0f81/g, "\u0f71\u0f80")
+	    .replace(/\u0f00/g, "\u0f68\u0f7c\u0f7e")
 
 	    // ... and pre-composed dh, gh, etc
 	    .replace(/\u0f43/g, "\u0f42\u0fb7")
