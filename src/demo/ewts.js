@@ -11,35 +11,6 @@ const htmlescape = x => x.replaceAll('&', '&amp;')
 	.replaceAll('"', '&quot;')
 	.replaceAll("'", '&#x27;');
 
-// UI code follows
-function set_tib_font() {
-	let e = getEl('id__tib_font');
-	let ft = e.options[e.selectedIndex].value;
-	e = getEl('id__tib_size');
-	let fs = e.options[e.selectedIndex].value;
-	e = getEl('id__conversion');
-	let conv = e.options[e.selectedIndex].value;
-
-	e = getEl('id__tib_out');
-	if (e) {
-		e.style.fontFamily = ft;
-		e.style.fontSize = fs;
-	}
-
-	e = getEl('id__txt');
-	if (conv == 'wy2uni') {
-		e.style.fontFamily = "Verdana, Tahoma, Helvetica";
-		e.style.fontSize = "14px"
-	} else {
-		e.style.fontFamily = ft;
-		e.style.fontSize = fs;
-	}
-}
-
-getEl('id__tib_font').addEventListener('change', set_tib_font);
-getEl('id__tib_size').addEventListener('change', set_tib_font);
-getEl('id__conversion').addEventListener('change', set_tib_font);
-
 getEl('id__txt').addEventListener('keydown', function(ev) {
 	// process on control-Enter
 	if (ev.keyCode == 13 && ev.ctrlKey) {

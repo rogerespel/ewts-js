@@ -20,7 +20,7 @@
 
 body { background: #fff }
 body, td, input, select, textarea { font-family:Verdana, Tahoma, Helvetica; font-size: 13px; }
-.tib { font-family: "Jomolhari"; font-size: 28px; }
+.tib { font-family: 'Jomolhari', 'Noto Serif Tibetan', 'Microsoft Himalaya', 'Tibetan Machine Uni', sans-serif; font-size: 28px }
 .warn { font-size: 13px; }
 .eng { font-size: 14px; }
 .after { font-size: 13px; margin-top:5px }
@@ -44,36 +44,10 @@ input[type="button"]:hover, input[type="button"]:focus { background:#eee }
 <body>
 
 <div style="width:95%; max-width:900px; margin:0 auto">
-<form onsubmit="return false">
 <span class="title">Tibetan transliteration: convert between EWTS (Extended Wylie) and Unicode</span><br><br>
 
-<div class="head1 clearfix">
-	<div class="first">
+<div class="head1 clearfix" style="margin-top:18px">
 		Paste your Tibetan text below, and click "Convert" or press Ctrl+Enter.
-	</div>
-	<div class="second">
-		Tibetan Font:
-		<select name="tib_font" id="id__tib_font">
-<option selected value="Jomolhari">Jomolhari</option>
-<option value="Noto Serif Tibetan">Noto Serif Tibetan</option>
-<option value="Tibetan Machine Uni">Tibetan Machine Uni</option>
-<option value="Kailasa">Kailasa</option>
-<option value="Microsoft Himalaya">Microsoft Himalaya</option>
-
-		</select>
-		<select name="tib_size" id="id__tib_size">
-		<option  value="18px">18px</option>
-<option value="20px">20px</option>
-<option value="24px">24px</option>
-<option selected value="28px">28px</option>
-<option value="32px">32px</option>
-<option value="36px">36px</option>
-<option value="40px">40px</option>
-<option value="44px">44px</option>
-<option value="48px">48px</option>
-<option value="52px">52px</option>
-		</select>
-	</div>
 </div>
 
 <textarea id="id__txt" style="font-size: 14px;" name="input">oM aHhU~M` badz+ra gu ru pad+ma sid+d+hi hU~M`:</textarea><br>
@@ -92,8 +66,6 @@ input[type="button"]:hover, input[type="button"]:focus { background:#eee }
 		&nbsp; <label><input id="id__leave_dubious" type="radio" name="dubious" value="leave">Leave untranslated</label>
 	</div>
 </div>
-
-</form>
 
 <div style="height:24px"></div>
 
