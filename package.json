@@ -3,11 +3,19 @@
   "version": "2.0.0",
   "type": "module",
   "description": "Tibetan transliteration (Wylie, EWTS) and approximate phonetics",
-  "keywords": [ "tibetan", "wylie", "ewts", "unicode", "transliteration", "converter", "phonetics" ],
+  "keywords": [
+    "tibetan",
+    "wylie",
+    "ewts",
+    "unicode",
+    "transliteration",
+    "converter",
+    "phonetics"
+  ],
   "author": "roger espel llima",
   "license": "Apache 2.0",
   "scripts": {
-    "build": "esbuild src/demo/ewts.js --bundle --outfile=htdocs/ewts.js --minify; esbuild src/demo/phonetics.js --bundle --outfile=htdocs/phonetics.js --minify"
+    "build": "esbuild src/demo/ewts.js --bundle --outfile=htdocs/ewts.js --minify; esbuild src/demo/phonetics.js --bundle --outfile=htdocs/phonetics.js --minify; esbuild src/demo/phugpa.js --bundle --outfile=htdocs/phugpa.js --minify"
   },
   "repository": {
     "type": "git",
@@ -22,6 +30,7 @@
     "./TibetanPhonetics-Rigpa": "./src/TibetanPhonetics-Rigpa.mjs"
   },
   "devDependencies": {
-    "esbuild": "^0.27.0"
+    "esbuild": "^0.27.0",
+    "tibetan-date-calculator": "^1.2.3"
   }
 }

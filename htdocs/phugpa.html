@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="150x150" href="/Static/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="150x150" href="/Static/apple-touch-icon.png">
+<style>
+body { background: #fff }
+body, td, input, select, textarea, h1, h2 { font-family:verdana, tahoma, helvetica; }
+body, td, input, select, textarea { font-size: 15px; }
+h1 { font-size: 18px; margin-top:10px }
+h2 { font-size: 15px; }
+.after { font-size: 13px; }
+.tbl { border:1px solid #aaa; width:650px; max-width:95%; margin:0 auto }
+.tbl td, .tbl th { border-bottom: 1px solid #ccc }
+.tbl tr:last-child td, .tbl tr:last-child th { border-bottom:none }
+.tbl th { background-color: #def }
+.tbl tr.arrows .arrow { width:5%; cursor:pointer; user-select:none; -webkit-user-select: none }
+.tbl tr.arrows .notarrow { width:15% }
+.tib { font-family: Jomolhari, Tibetan Machine Uni, Himalaya; font-size:16pt; line-height:25pt; margin-bottom:0cm; margin-top:0cm; font-weight:normal; }
+.tibtit { font-family: Jomolhari, Tibetan Machine Uni, Himalaya; font-size:18pt; line-height:27pt; margin-bottom:0cm; margin-top:0cm; font-weight:normal; }
+td.mark { border-left:1px dotted #ccc; padding-left: 12px }
+input, select { border:1px solid #aaa; background:#fff; padding:6px; border-radius:2px; color:#333 }
+
+.tbl.rabjung { width:900px }
+.tbl.rabjung td { text-align:center }
+
+</style>
+<title>Tibetan Phugpa Calendar Calculator</title>
+</head>
+<body>
+<div style="max-width:800px; margin:0 auto">
+<h1>Tibetan Phugpa Calendar Calculator</h1>
+<div style="line-height:24px">
+Enter a year (Western calendar): <input id="year-input" name="year" size="6"> <input id="make-calendar" type="button" value="Make Calendar" style="font-weight:bold; background:#eee; min-width:180px">
+</div>
+
+<div id="calendar"></div>
+
+<h1 style="margin-top:64px">Rabjung Browser</h1>
+
+<table id="rabjung" class="tbl rabjung" border="0" cellspacing="1" cellpadding="2" style="table-layout:fixed">
+	<tr class="arrows">
+		<th class="arrow" data-add="-60">&lt;&lt;</th>
+		<th class="arrow" data-add="-12">&lt;</th>
+		<th class="notarrow">W. Year</th>
+		<th class="notarrow">Tib Year</th>
+		<th class="notarrow">Gender</th>
+		<th class="notarrow">Element</th>
+		<th class="notarrow">Animal</th>
+		<th class="notarrow">Cycle</th>
+		<th class="arrow" data-add="12">&gt;</th>
+		<th class="arrow" data-add="60">&gt;&gt;</th>
+	</tr>
+	<tbody id="rabjung-years"></tbody>
+</table>
+
+<div class="after" style="margin-top:32px; line-height:1.5">
+&bull; This page is Free Software; see <a href="https://github.com/rogerespel/ewts-js/tree/main/htdocs">see for the front-end</a> , and <a href="https://gitlab.com/TibetanCalendar/TibetanDateCalcualtor">here for the calendar library</a>.
+
+<br>&bull; See <a href="https://www.lotsawahouse.org/Static/Calendar-Phugpa-dev.zip">here for the older Perl version of this code.</a>
+
+<br>&bull; Calendar calculations based on <a target="_blank" href="http://www2.math.uu.se/~svante/papers/calendars/tibet.pdf"><i>Tibetan calendar mathematics</i></a> by <a target="_blank" href="https://katalog.uu.se/empInfo?id=XX2949">Svante Janson</a>.
+
+<br><br><br>
+</div>
+
+</div>
+
+<script type="module" src="./phugpa.js"></script>
+
+</body>
+</html>
+
