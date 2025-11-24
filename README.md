@@ -21,7 +21,7 @@ As of version 2, this is a pure ES module.
 ## Wylie/EWTS conversion:
 
 ```javascript
-import { EwtsConverter } from 'tibetan-ewts-converter/EwtsConverter';
+import { EwtsConverter } from 'tibetan-ewts-converter';
 const ewts = new EwtsConverter();
 console.log(ewts.to_unicode("sangs rgyas"));
 console.log(ewts.to_ewts("སངས་རྒྱས"));
@@ -30,7 +30,7 @@ console.log(ewts.to_ewts("སངས་རྒྱས"));
 ## Approximate phonetics:
 
 ```javascript
-import { get_phonetics } from "tibetan-ewts-converter/TibetanPhonetics-Any";
+import { get_phonetics } from 'tibetan-ewts-converter';
 const pho = get_phonetics({ style: 'thl' });
 console.log(pho.phonetics("sangs rgyas", { autosplit: true }));
 ```

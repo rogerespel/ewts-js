@@ -14,14 +14,12 @@
   ],
   "author": "roger espel llima",
   "license": "Apache 2.0",
-  "scripts": {
-    "build": "esbuild src/demo/ewts.js --bundle --outfile=htdocs/ewts.js --minify; esbuild src/demo/phonetics.js --bundle --outfile=htdocs/phonetics.js --minify; esbuild src/demo/phugpa.js --bundle --outfile=htdocs/phugpa.js --minify"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/rogerespel/ewts-js"
   },
   "exports": {
+    ".": "./src/index.mjs",
     "./EwtsConverter": "./src/EwtsConverter.mjs",
     "./TibetanPhonetics": "./src/TibetanPhonetics.mjs",
     "./TibetanPhonetics-Any": "./src/TibetanPhonetics-Any.mjs",
