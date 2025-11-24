@@ -31,7 +31,7 @@ console.log(ewts.to_ewts("སངས་རྒྱས"));
 
 ```javascript
 import { get_phonetics } from 'tibetan-ewts-converter';
-const pho = get_phonetics({ style: 'thl' });
+const pho = get_phonetics({ style: "lotsawahouse", lang: "en" });
 console.log(pho.phonetics("sangs rgyas", { autosplit: true }));
 ```
 
@@ -57,11 +57,11 @@ let ewts = new EwtsConverter({ check_strict: false, leave_dubious: true, sloppy:
 - `style`: one of 'thl', 'lotsawahouse', 'rigpa', 'lhasey', 'padmakara'
 - `lang`: 2-letter language code, for styles that have language variants (ex. 'en', 'es')
 
-See the code for lots of other options allowing fine control of phonetics generation.
-
 The `phonetics` method takes a string (Tibetan Unicode or EWTS), and an optional `options` object.
 
 Unless you're using a better external tokenizer, always pass the option `{ autosplit: true }`.
+
+See the code for lots of other options allowing fine control of phonetics generation.  You can also directly import and use the classes `TibetanPhonetics`, `TibetanPhoneticsRigpa`, `TibetanPhoneticsLhasey` and `TibetanPhoneticsPadmakara`.
 
 # Code and history
 
