@@ -21,7 +21,7 @@ As of version 2, this is a pure ES module.
 ## Wylie/EWTS conversion:
 
 ```javascript
-import { EwtsConverter } from 'tibetan-ewts-converter';
+import { EwtsConverter } from 'tibetan-ewts-converter/EwtsConverter';
 const ewts = new EwtsConverter();
 console.log(ewts.to_unicode("sangs rgyas"));
 console.log(ewts.to_ewts("སངས་རྒྱས"));
@@ -69,15 +69,12 @@ The first version of this code was [written in Perl](https://www.lotsawahouse.or
 around 2008.  In 2010 the EWTS/Unicode converter was [ported to Java](https://github.com/buda-base/ewts-converter) at the request of
 [TBRC](https://tbrc.org/), now [BDRC](https://www.bdrc.io/).
 
-This Java code was then ported to other languages by different groups: 
+The Java code for phonetics was then ported to other languages by different groups:
 - [Python port by Esukhia](https://github.com/OpenPecha-dev/pyewts)
 - [C# port by radiantspace](https://github.com/radiantspace/WylieCS)
 - [Another Python port by radiantspace](https://github.com/radiantspace/WyliePy)
-- JavaScript ports from [BDRC](https://github.com/buda-base/jsewts), [Ksana Forge](https://github.com/ksanaforge/wylie)
-and [Karmapa Digital Toolbox](https://github.com/karmapa/wylie)
-
-This JavaScript port was done in 2021, going back to the original Perl code, but incorporating some of the improvements
-done by various groups.
+- JavaScript ports from [BDRC](https://github.com/buda-base/jsewts), [Ksana Forge](https://github.com/ksanaforge/wylie) and [Karmapa Digital Toolbox](https://github.com/karmapa/wylie)
+- This Javascript port of 2021, going back to the original Perl code, but incorporating some of the improvements done by various groups.
 
 Phonetics generation was added to this project in 2025, also ported from the original perl with the help of AI.
 
