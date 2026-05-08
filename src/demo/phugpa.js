@@ -140,6 +140,12 @@ function get_and_generate() {
 	if (year > 0) generate(year);
 }
 
+// generate year calendar and fill the input with the year number
+function put_and_generate(year) {
+	getEl('year-input').value = String(year);
+	generate(+year);
+}
+
 getEl('make-calendar').addEventListener('click', get_and_generate);
 getEl('year-input').addEventListener('keypress', (e) => e.key === 'Enter' && get_and_generate());
 getEl('year-input').focus()
@@ -167,7 +173,7 @@ function do_rabjung(start_w_year) {
 <tr>
 <td></td>
 <td></td>
-<td>${w_year}</td>
+<td><a href="#" data-year="${w_year}">${w_year}</a></td>
 <td>${tib_year}</td>
 <td>${gender}</td>
 <td>${element}</td>
@@ -184,6 +190,12 @@ function do_rabjung(start_w_year) {
 document.querySelector('#rabjung tr.arrows').addEventListener('click', (ev) => {
 	const add = +ev.target.dataset.add;
 	if (add > 0 || add < 0) do_rabjung(rabjung_year + add);
+});
+
+document.querySelector('#rabjung-years').addEventListener('click', (ev) => {
+	ev.preventDefault();
+	const el = ev.target, year = el.dataset.year;
+	if (year) put_and_generate(+year);
 });
 
 document.querySelector('#rabjung tr.arrows').addEventListener('dblclick', (ev) => { ev.preventDefault() });
